@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\LoginController;
+use Auth;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -12,9 +15,10 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Auth::routes();
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('welcome');
 
-Route::view('/admin', 'admin.dashboard.index');
+require 'admin.php';
