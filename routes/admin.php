@@ -2,12 +2,15 @@
 
 // use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\LoginController;
+use App\Http\Controllers\Admin\SettingController;
 
 Route::prefix('admin')->group(function() {
 
     Route::get('login', [LoginController::class,'showLoginForm'])->name('admin.login');
     Route::post('login', [LoginController::class,'login'])->name('admin.login.post');
     Route::get('logout', [LoginController::class,'logout'])->name('admin.logout');
+    Route::get('/settings', [SettingController::class, 'index'])->name('admin.settings');
+    Route::post('/settings', [SettingController::class, 'update'])->name('admin.settings.update');
 
     Route::middleware(['auth:admin'])->group(function() {
         Route::get('/', function () {
