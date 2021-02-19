@@ -20,5 +20,6 @@ class DatabaseSeeder extends Seeder
          * and create database entries for us.
         */ 
         $this->call(AdminsTableSeeder::class);
+        $this->call(CategoriesTableSeeder::class);
     }
 }
