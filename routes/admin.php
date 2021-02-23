@@ -3,6 +3,7 @@
 // use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\SettingController;
+use App\Http\Controllers\Admin\CategoryController;
 
 Route::prefix('admin')->group(function() {
 
@@ -17,6 +18,19 @@ Route::prefix('admin')->group(function() {
             return view('admin.dashboard.index');
         })->name('admin.dashboard');
     });
+
+
+    Route::prefix('categories')->group(function() {
+        Route::get('/', [CategoryController::class, 'index'])->name('admin.categories.index');
+        Route::get('/create', [CategoryController::class, 'create'])->name('admin.categories.create');
+        Route::post('/store', [CategoryController::class, 'store'])->name('admin.categories.store');
+        Route::get('/{id}/edit', [CategoryController::class, 'edit'])->name('admin.categories.edit');
+        Route::post('/update', [CategoryController::class, 'update'])->name('admin.categories.update');
+        Route::get('/{id}', [CategoryController::class, 'delete'])->name('admin.categories.delete');
+    });
+
+
+
 });
 
 
