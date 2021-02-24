@@ -4,6 +4,7 @@
 use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\AttributeController;
 
 Route::prefix('admin')->group(function() {
 
@@ -29,7 +30,14 @@ Route::prefix('admin')->group(function() {
         Route::get('/{id}', [CategoryController::class, 'delete'])->name('admin.categories.delete');
     });
 
-
+    Route::prefix('attributes')->group( function() {
+        Route::get('/', [AttributeController::class, 'index'])->name('admin.attributes.index');
+        Route::get('/create', [AttributeController::class, 'create'])->name('admin.attributes.create');
+        Route::post('/store', [AttributeController::class ,'store'])->name('admin.attributes.store');
+        Route::get('/{id}/edit', [AttributeController::class, 'edit'])->name('admin.attributes.edit');
+        Route::post('/update', [AttributeController::class ,'update'])->name('admin.attributes.update');
+        Route::get('/{id}/delete', [AttributeController::class , 'delete'])->name('admin.attributes.delete');
+    });
 
 });
 
