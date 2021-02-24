@@ -20,5 +20,11 @@
                 <span class="app-menu__label">Categories</span>
             </a>
         </li>
+        <li>
+            <a class="app-menu__item {{ Route::currentRouteName() == 'admin.attributes.index' ? 'active' : '' }}" href="{{ route('admin.attributes.index') }}">
+                <i class="app-menu__icon fa fa-th"></i>
+                <span class="app-menu__label">Attributes</span>
+            </a>
+        </li>
     </ul>
 </aside>
