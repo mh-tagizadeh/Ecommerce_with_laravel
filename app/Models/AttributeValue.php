@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Attribute;
 
 class AttributeValue extends Model
 {
@@ -28,4 +29,13 @@ class AttributeValue extends Model
     protected $casts = [
         'attribute_id' => 'integer',
     ];
+
+    /**
+     * inverse of this relationship using the belongsTo method
+     * @return BelongsTo
+     */
+    public function attribute()
+    {
+        return $this->belongsTo(Attribute::class);
+    }
 }
