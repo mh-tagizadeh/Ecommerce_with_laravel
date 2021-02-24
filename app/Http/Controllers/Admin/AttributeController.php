@@ -82,9 +82,12 @@ class AttributeController extends BaseController
      * @param  \App\Models\Attribute  $attribute
      * @return \Illuminate\Http\Response
      */
-    public function edit(Attribute $attribute)
+    public function edit($id)
     {
-        //
+        $attribute = $this->attributeRepository->findAttributeById($id);
+
+        $this->setPageTitle('Attributes', 'Edit Attribute : '.$attribute->name);
+        return view('admin.attributes.edit', compact('attribute'));
     }
 
     /**
@@ -94,9 +97,22 @@ class AttributeController extends BaseController
      * @param  \App\Models\Attribute  $attribute
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Attribute $attribute)
+    public function update(Request $request)
     {
-        //
+        $this->validate($request, [
+            'code'          =>  'required',
+            'name'          =>  'required',
+            'frontend_type' =>  'required'
+        ]);
+
+        $params = $request->except('_token');
+
+        $attribute = $this->attributeRepository->updateAttribute($params);
+
+        if (!$attribute) {
+            return $this->responseRedirectBack('Error occurred while updating attribute.', 'error', true, true);
+        }
+        return $this->responseRedirectBack('Attribute updated successfully' ,'success',false, false);
     }
 
     /**
@@ -105,8 +121,14 @@ class AttributeController extends BaseController
      * @param  \App\Models\Attribute  $attribute
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Attribute $attribute)
+    public function delete($id)
     {
-        //
+        $attribute = $this->attributeRepository->deleteAttribute($id);
+
+        if (!$attribute) {
+            return $this->responseRedirectBack('Error occurred while deleting attribute.', 'error', true, true);
+        }
+        return $this->responseRedirect('admin.attributes.index', 'Attribute deleted successfully' ,'success',false, false);
     }
+    
 }
