@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\AttributeController;
 use App\Http\Controllers\Admin\AttributeValueController;
+use App\Http\Controllers\Admin\BrandController;
 
 Route::prefix('admin')->group(function() {
 
@@ -16,6 +17,15 @@ Route::prefix('admin')->group(function() {
     Route::post('/settings', [SettingController::class, 'update'])->name('admin.settings.update');
 
 
+    Route::prefix('brands')->group(function() {
+        Route::get('/', [BrandController::class,'index'])->name('admin.brands.index');
+        Route::get('/create', [BrandController::class ,'create'])->name('admin.brands.create');
+        Route::post('/store', [BrandController::class ,'store'])->name('admin.brands.store');
+        Route::get('/{id}/edit', [BrandController::class ,'edit'])->name('admin.brands.edit');
+        Route::post('/update', [BrandController::class ,'update'])->name('admin.brands.update');
+        Route::get('/{id}/delete', [BrandController::class ,'delete'])->name('admin.brands.delete');
+
+    });
 
 
     Route::middleware(['auth:admin'])->group(function() {
