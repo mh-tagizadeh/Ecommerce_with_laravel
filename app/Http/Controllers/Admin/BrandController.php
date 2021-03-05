@@ -103,10 +103,9 @@ class BrandController extends BaseController
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Brand  $brand
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Brand $brand)
+    public function update(Request $request)
     {
         $this->validate($request, [
             'name'      =>  'required|max:191',
@@ -124,13 +123,16 @@ class BrandController extends BaseController
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Brand  $brand
-     * @return \Illuminate\Http\Response
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy(Brand $brand)
+    public function delete($id)
     {
-        //
+        $brand = $this->brandRepository->deleteBrand($id);
+
+        if (!$brand) {
+            return $this->responseRedirectBack('Error occurred while deleting brand.', 'error', true, true);
+        }
+        return $this->responseRedirect('admin.brands.index', 'Brand deleted successfully' ,'success',false, false);
     }
 }
