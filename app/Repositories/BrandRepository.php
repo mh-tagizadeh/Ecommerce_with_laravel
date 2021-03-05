@@ -67,7 +67,7 @@ class BrandRepository extends BaseRepository implements BrandContract
             $logo = null;
 
             if($collection->has('logo') && ($params['logo'] instanceof UploadedFile)) {
-                $logo = $this->uploadOne($param['logo'], 'brands');
+                $logo = $this->uploadOne($params['logo'], 'brands');
             }
 
             $merge = $collection->merge(compact('logo'));

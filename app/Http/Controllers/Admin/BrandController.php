@@ -39,13 +39,14 @@ class BrandController extends BaseController
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new brand.
      *
      * @return \Illuminate\Http\Response
      */
     public function create()
     {
-        //
+        $this->setPageTitle('Brands', 'Create Brand');
+        return view('admin.brands.create');
     }
 
     /**
@@ -56,8 +57,22 @@ class BrandController extends BaseController
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name'      =>  'required|max:191',
+            'image'     =>  'mimes:jpg,jpeg,png|max:1000',
+        ]);
+
+        $params = $request->except('_token');
+
+        $brand = $this->brandRepository->createBrand($params);
+
+        if (!$brand) {
+            return $this->responseRedirectBack('Error occurred while creating brand.', 'error', true, true);
+        }
+
+        return $this->responseRedirect('admin.brands.index', 'Brand added successfully' ,'success',false, false);
     }
+
 
     /**
      * Display the specified resource.
