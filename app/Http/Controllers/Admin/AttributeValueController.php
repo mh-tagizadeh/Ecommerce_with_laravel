@@ -33,7 +33,7 @@ class AttributeValueController extends Controller
         $value = new AttributeValue();
         $value->attribute_id = $request->id;
         $value->value = $request->value;
-        $value->price = $request->inputprice;
+        $value->price = $request->price;
         $value->save();
 
         return response()->json($value);
@@ -44,7 +44,7 @@ class AttributeValueController extends Controller
         $attributeValue = AttributeValue::findOrFail($request->valueId);
         $attributeValue->attribute_id = $request->id;
         $attributeValue->value = $request->value;
-        $attributeValue->price = $request->inprice;
+        $attributeValue->price = $request->price;
         $attributeValue->save();
 
         return response()->json($attributeValue);
