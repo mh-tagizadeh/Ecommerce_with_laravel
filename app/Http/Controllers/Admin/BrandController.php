@@ -8,6 +8,22 @@ use Illuminate\Http\Request;
 
 class BrandController extends Controller
 {
+
+    /** 
+     * @var BrandContract 
+     */
+    protected $brandRepository;
+
+    /**
+     * BrandController constructor
+     * @param BrandContract $brandRepository
+     */
+    public function __construct(BrandContract $brandRepository)
+    {
+        $this->brandRepository = $brandRepository;
+    }
+
+
     /**
      * Display a listing of the resource.
      *
