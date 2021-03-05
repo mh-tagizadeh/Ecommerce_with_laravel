@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Contracts\BrandContract;
+use App\Http\Controllers\BaseController;
 use App\Models\Brand;
 use Illuminate\Http\Request;
 
-class BrandController extends Controller
+class BrandController extends BaseController
 {
 
     /** 
@@ -25,13 +26,16 @@ class BrandController extends Controller
 
 
     /**
-     * Display a listing of the resource.
+     * Display a listing of the brands.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        //
+        $brands = $this->brandRepository->listBrands();
+
+        $this->setPageTitle('Brands', 'List of all brands');
+        return view('admin.brands.index', compact('brands'));
     }
 
     /**

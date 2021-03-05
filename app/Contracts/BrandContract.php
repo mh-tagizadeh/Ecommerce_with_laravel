@@ -1,12 +1,12 @@
 <?php 
 
-namespace App\Contract;
+namespace App\Contracts;
 
 /**
- * interface BrnadContract
+ * interface BrandContract
  * @package App\Contract 
  */
-interface BrnadContract
+interface BrandContract
 {
     /**
      * @param string $order
