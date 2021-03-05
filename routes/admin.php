@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\AttributeController;
+use App\Http\Controllers\Admin\AttributeValueController;
 
 Route::prefix('admin')->group(function() {
 
@@ -13,6 +14,9 @@ Route::prefix('admin')->group(function() {
     Route::get('logout', [LoginController::class,'logout'])->name('admin.logout');
     Route::get('/settings', [SettingController::class, 'index'])->name('admin.settings');
     Route::post('/settings', [SettingController::class, 'update'])->name('admin.settings.update');
+
+
+
 
     Route::middleware(['auth:admin'])->group(function() {
         Route::get('/', function () {
@@ -37,6 +41,13 @@ Route::prefix('admin')->group(function() {
         Route::get('/{id}/edit', [AttributeController::class, 'edit'])->name('admin.attributes.edit');
         Route::post('/update', [AttributeController::class ,'update'])->name('admin.attributes.update');
         Route::get('/{id}/delete', [AttributeController::class , 'delete'])->name('admin.attributes.delete');
+
+
+
+        Route::post('/get-values', [AttributeValueController::class, 'getValues']);
+        Route::post('/add-values', [AttributeValueController::class, 'addValues']);
+        Route::post('/update-values', [AttributeValueController::class, 'updateValues']);
+        Route::post('/delete-values', [AttributeValueController::class, 'deleteValues']);
     });
 
 });

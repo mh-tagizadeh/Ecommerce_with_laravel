@@ -1,12 +1,11 @@
 window._ = require('lodash');
-
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
  * for JavaScript based Bootstrap features such as modals and tabs. This
  * code may be modified to fit the specific needs of your application.
  */
 
-window.Vue = require('vue');
+window.Vue = require('vue').default;
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
@@ -31,7 +30,6 @@ if (token) {
 } else {
     console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
-
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -54,8 +52,7 @@ Vue.use(VueSwal);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+Vue.component('attribute-values', require('./components/AttributeValues.vue').default, );
 const app = new Vue({
     el: '#app'
 });
-
-Vue.component('attribute-values', require('./components/AttributeValues.vue').default);

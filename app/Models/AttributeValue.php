@@ -10,6 +10,8 @@ class AttributeValue extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     /**
      * 
      * @var string
