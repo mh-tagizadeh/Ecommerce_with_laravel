@@ -91,9 +91,12 @@ class BrandController extends BaseController
      * @param  \App\Models\Brand  $brand
      * @return \Illuminate\Http\Response
      */
-    public function edit(Brand $brand)
+    public function edit($id)
     {
-        //
+        $brand = $this->brandRepository->findBrandById($id);
+
+        $this->setPageTitle('Brands', 'Edit Brand : '.$brand->name);
+        return view('admin.brands.edit', compact('brand'));
     }
 
     /**
@@ -105,7 +108,19 @@ class BrandController extends BaseController
      */
     public function update(Request $request, Brand $brand)
     {
-        //
+        $this->validate($request, [
+            'name'      =>  'required|max:191',
+            'image'     =>  'mimes:jpg,jpeg,png|max:1000'
+        ]);
+
+        $params = $request->except('_token');
+
+        $brand = $this->brandRepository->updateBrand($params);
+
+        if (!$brand) {
+            return $this->responseRedirectBack('Error occurred while updating brand.', 'error', true, true);
+        }
+        return $this->responseRedirectBack('Brand updated successfully' ,'success',false, false);
     }
 
     /**
