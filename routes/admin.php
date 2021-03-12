@@ -60,6 +60,16 @@ Route::prefix('admin')->group(function() {
         Route::post('/delete-values', [AttributeValueController::class, 'deleteValues']);
     });
 
+    Route::prefix('products')->group( function () {
+
+        Route::get('/', [ProductController::class,'index'])->name('admin.products.index');
+        Route::get('/create', [ProductController::class,'create'])->name('admin.products.create');
+        Route::post('/store', [ProductController::class,'store'])->name('admin.products.store');
+        Route::get('/edit/{id}', [ProductController::class,'edit'])->name('admin.products.edit');
+        Route::post('/update', [ProductController::class,'update'])->name('admin.products.update');
+
+    });
+
 });
 
 
