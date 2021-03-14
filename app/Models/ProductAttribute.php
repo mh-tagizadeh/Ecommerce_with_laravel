@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Product;
 use App\Models\AttributeValue;
+use App\Models\Attribute;
 
 
 class ProductAttribute extends Model
@@ -26,5 +27,11 @@ class ProductAttribute extends Model
     public function attributesValues()
     {
         return $this->belongsToMany(AttributeValue::class);
+    }
+
+
+    public function attributes()
+    {
+        return $this->belongsToMany(Attribute::class);
     }
 }
