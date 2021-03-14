@@ -240,7 +240,7 @@
         </div>
     </div>
 @endsection
-@push('scripts')
+@section('scripts')
     <script type="text/javascript" src="{{ asset('backend/js/plugins/select2.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('backend/js/plugins/dropzone/dist/min/dropzone.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('backend/js/plugins/bootstrap-notify.min.js') }}"></script>
@@ -292,4 +292,4 @@
             $('#categories').select2();
         });
     </script>
-@endpush
+@endsection
