@@ -15,8 +15,15 @@ use App\Http\Controllers\Admin\LoginController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('welcome');
+// Route::get('/', function () {
+//     return view('welcome');
+// })->name('welcome');
 
+Route::view('/', 'site.pages.homepage');
+
+Auth::routes();
 require 'admin.php';
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
