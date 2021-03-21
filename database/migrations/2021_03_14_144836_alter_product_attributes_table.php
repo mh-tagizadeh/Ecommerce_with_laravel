@@ -17,7 +17,7 @@ class AlterProductAttributesTable extends Migration
 
             $table->unsignedBigInteger('attribute_id')->after('id');
             $table->foreign('attribute_id')->references('id')->on('attributes');
-            $table->string('value')->after('attribute_id');
+            $table->string('value', 255)->after('attribute_id');
         });
     }
 
