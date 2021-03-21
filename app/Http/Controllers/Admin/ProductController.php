@@ -9,6 +9,7 @@ use App\Contracts\BrandContract;
 use App\Contracts\CategoryContract;
 use App\Contracts\ProductContract;
 use App\Http\Requests\StoreProductFormRequest;
+use App\Contracts\AttributeContract;
 
 class ProductController extends BaseController
 {
@@ -18,10 +19,13 @@ class ProductController extends BaseController
 
     protected $productRepository;
 
+    protected $attributeRepository;
+
     public function __construct(
         BrandContract $brandRepository,
         CategoryContract $categoryRepository,
-        ProductContract $productRepository
+        ProductContract $productRepository,
+        AttributeContract $attributeRepository
     )
     {
         $this->brandRepository = $brandRepository;
@@ -82,7 +86,10 @@ class ProductController extends BaseController
      */
     public function show(Product $product)
     {
-        //
+        $product = $this->productRepository->findProductBySlug($slug);
+        $attributes = $this->attributeRepository->findProductBySlug($slug);
+
+        return view('site.pages.product', compact('product', 'attributes'));
     }
 
     /**
