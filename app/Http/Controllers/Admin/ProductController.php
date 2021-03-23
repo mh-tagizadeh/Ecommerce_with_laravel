@@ -84,10 +84,10 @@ class ProductController extends BaseController
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function show(Product $product)
+    public function show($slug)
     {
         $product = $this->productRepository->findProductBySlug($slug);
-        $attributes = $this->attributeRepository->findProductBySlug($slug);
+        $attributes = $this->attributeRepository->listAttributes();
 
         return view('site.pages.product', compact('product', 'attributes'));
     }
@@ -136,4 +136,10 @@ class ProductController extends BaseController
     {
         //
     }
+
+    public function addToCart(Request $request)
+    {
+        dd($request->all());
+    }
 }
+
