@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Site\ProductController;
 use App\Http\Controllers\Site\CartController;
+use App\Http\Controllers\Site\CheckoutController;
 
 
 /*
@@ -37,3 +38,9 @@ Route::get('/product/{slug}', [ProductController::class, 'show'])->name('product
 Route::get('/cart', [CartController::class,'getCart'])->name('checkout.cart');
 Route::get('/cart/item/{id}/remove', [CartController::class,'removeItem'])->name('checkout.cart.remove');
 Route::get('/cart/clear', [CartController::class,'clearCart'])->name('checkout.cart.clear');
+
+
+Route::middleware(['auth'])->group(function() {
+    Route::get('/checkout', [CheckoutController::class, 'getCheckout'])->name('checkout.index');
+    Route::post('/checkout/order', [CheckoutController::class, 'placeOrder'])->name('checkout.place.order');
+});
