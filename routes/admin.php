@@ -10,9 +10,17 @@ use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\ProductImageController;
 use App\Http\Controllers\Admin\ProductAttributeController;
+use App\Http\Controllers\Admin\OrderController;
 
 
 Route::prefix('admin')->group(function() {
+
+
+    Route::prefix('orders')->group(function () {
+        Route::get('/', [OrderController::class, 'index'])->name('admin.orders.index');
+        Route::get('/{order}/show', [OrderController::class, 'show'])->name('admin.orders.show');
+    });
+
 
     Route::get('login', [LoginController::class,'showLoginForm'])->name('admin.login');
     Route::post('login', [LoginController::class,'login'])->name('admin.login.post');

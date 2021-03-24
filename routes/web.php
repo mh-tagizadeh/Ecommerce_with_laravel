@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Site\ProductController;
 use App\Http\Controllers\Site\CartController;
 use App\Http\Controllers\Site\CheckoutController;
+use App\Http\Controllers\Site\AccountController;
 
 
 /*
@@ -44,3 +45,7 @@ Route::middleware(['auth'])->group(function() {
     Route::get('/checkout', [CheckoutController::class, 'getCheckout'])->name('checkout.index');
     Route::post('/checkout/order', [CheckoutController::class, 'placeOrder'])->name('checkout.place.order');
 });
+
+Route::get('checkout/payment/complete', [CheckoutController::class, 'complete'])->name('checkout.payment.complete');
+
+Route::get('account/orders', [AccountController::class, 'getOrders'])->name('account.orders');
