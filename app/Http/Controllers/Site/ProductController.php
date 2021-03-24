@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Contracts\ProductContract;
 use App\Contracts\AttributeContract;
+use Cart;
 
 class ProductController extends Controller
 {

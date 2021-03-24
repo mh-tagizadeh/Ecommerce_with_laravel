@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Site\ProductController;
+use App\Http\Controllers\Site\CartController;
 
 
 /*
@@ -32,3 +33,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::post('/product/add/cart', [ProductController::class, 'addToCart'])->name('product.add.cart');
 Route::get('/product/{slug}', [ProductController::class, 'show'])->name('product.show');
 // Route::get('/product/{slug}', 'Site\ProductController@show')->name('product.show');
+
+Route::get('/cart', [CartController::class,'getCart'])->name('checkout.cart');
+Route::get('/cart/item/{id}/remove', [CartController::class,'removeItem'])->name('checkout.cart.remove');
+Route::get('/cart/clear', [CartController::class,'clearCart'])->name('checkout.cart.clear');

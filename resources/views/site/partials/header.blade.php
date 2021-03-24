@@ -28,7 +28,7 @@
                                 <div class="icon-wrap icon-xs bg2 round text-secondary"><i
                                         class="fa fa-shopping-cart"></i></div>
                                 <div class="text-wrap">
-                                    <small>{{ $cartCount }} items</small>
+                                    <small>{{ $cartCount ?? '' }} items</small>
                                 </div>
                             </a>
                         </div>
