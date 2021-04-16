@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\BaseController;
 use Illuminate\Http\Request;
+use App\Models\Setting;
 use UploadAble;
 
 class SettingController extends BaseController
